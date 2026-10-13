@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitación a una casa · Casa al día</title>
+<style>
+ body{font-family:sans-serif;background:#f4f6f5;color:#193734;max-width:560px;margin:0 auto;padding:24px}
+ .card{background:#fff;border-radius:14px;padding:20px;margin-top:16px}
+ a.boton{display:block;background:#167d69;color:#fff;text-align:center;padding:14px;border-radius:12px;text-decoration:none;font-size:17px;margin:12px 0}
+ code{display:block;background:#eef2f1;padding:10px;border-radius:8px;word-break:break-all;font-size:13px}
+ p.small{color:#5e6e6b;font-size:13px}
+</style>
+</head>
+<body>
+<h1>🏠 Te han invitado a una casa</h1>
+<div class="card">
+<p id="casa">En Casa al día, la app para repartirse las tareas de casa.</p>
+<a class="boton" id="abrir" href="#">Abrir en la app</a>
+<p class="small">Si no se abre sola: copia este enlace, abre Casa al día y pégalo en «Mis casas → Unirme a una casa (pegar invitación)».</p>
+<code id="enlace"></code>
+<p class="small">¿No tienes la app? Pídesela a quien te ha invitado.</p>
+</div>
+<script>
+ var q=new URLSearchParams(location.search), h=q.get('h'), c=q.get('c'), n=q.get('n');
+ var enlace=location.href;
+ document.getElementById('enlace').textContent=enlace;
+ if(n) document.getElementById('casa').textContent='Te han invitado a «'+n+'» en Casa al día, la app para repartirse las tareas de casa.';
+ if(h&&c) document.getElementById('abrir').href='intent://unirse?h='+encodeURIComponent(h)+'&c='+encodeURIComponent(c)+'#Intent;scheme=casaaldia;package=es.sergio.casa;end';
+ else document.getElementById('abrir').style.display='none';
+</script>
+</body>
+</html>
